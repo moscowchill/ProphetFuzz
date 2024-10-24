@@ -160,7 +160,7 @@ Thanks to Dawei Wang ([@4ugustus](https://github.com/waugustus)) and Geng Zhou (
 In case you would like to cite ProphetFuzz, you may use the following BibTex entry:
 
 ```
-@inproceedings {
+@inproceedings {wang2024prophet,
   title = {ProphetFuzz: Fully Automated Prediction and Fuzzing of High-Risk Option Combinations with Only Documentation via Large Language Model},
   author = {Wang, Dawei and Zhou, Geng and Chen, Li and Li, Dan and Miao, Yukai},
   booktitle = {Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security},
