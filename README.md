@@ -1,12 +1,12 @@
 # ProphetFuzz
 
-<p><a href="https://www.usenix.org/system/files/sec23fall-prepub-467-wang-dawei.pdf"><img alt="ProphetFuzz thumbnail" align="right" width="200" src="assets/images/thumbnail.png"></a></p>
+<p><a href="https://arxiv.org/abs/2409.00922"><img alt="ProphetFuzz thumbnail" align="right" width="200" src="assets/images/thumbnail.png"></a></p>
 
 The implementation of the paper titled **"ProphetFuzz: Fully Automated Prediction and Fuzzing of High-Risk Option Combinations with Only Documentation via Large Language Model"**
 
 ProphetFuzz is an LLM- based, fully automated fuzzing tool for option combination testing. ProphetFuzz can predict and conduct fuzzing on high-risk option combinations 1 with only documentation, and the entire process operates without manual intervention. 
 
-For more details, please refer to [our paper](https://waugustus.github.io/assets/files/ProphetFuzz.pdf) from ACM CCS'24.
+For more details, please refer to [our paper](https://arxiv.org/abs/2409.00922) from ACM CCS'24.
 
 Due to page limitations, the Appendix of the paper could not be included within the main text. Please refer to [Appendix](Appendix.md).
 
