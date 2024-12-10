@@ -6,7 +6,7 @@ The implementation of the paper titled **"ProphetFuzz: Fully Automated Predictio
 
 ProphetFuzz is an LLM- based, fully automated fuzzing tool for option combination testing. ProphetFuzz can predict and conduct fuzzing on high-risk option combinations 1 with only documentation, and the entire process operates without manual intervention. 
 
-For more details, please refer to [our paper](https://arxiv.org/abs/2409.00922) from ACM CCS'24.
+For more details, please refer to [our paper](https://dl.acm.org/doi/10.1145/3658644.3690231) from ACM CCS'24.
 
 Due to page limitations, the Appendix of the paper could not be included within the main text. Please refer to [Appendix](Appendix.md).
 
@@ -166,7 +166,7 @@ In case you would like to cite ProphetFuzz, you may use the following BibTex ent
   booktitle = {Proceedings of the 2024 ACM SIGSAC Conference on Computer and Communications Security},
   publisher = {Association for Computing Machinery},
   address = {Salt Lake City, UT, USA},
-  pages = {},
+  pages = {735–749},
   year = {2024}
 }
 ```
