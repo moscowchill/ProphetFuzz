@@ -1,6 +1,6 @@
 # ProphetFuzz
 
-<p><a href="https://arxiv.org/abs/2409.00922"><img alt="ProphetFuzz thumbnail" align="right" width="200" src="assets/images/thumbnail.png"></a></p>
+<p><a href="https://dl.acm.org/doi/10.1145/3658644.3690231"><img alt="ProphetFuzz thumbnail" align="right" width="200" src="assets/images/thumbnail.png"></a></p>
 
 The implementation of the paper titled **"ProphetFuzz: Fully Automated Prediction and Fuzzing of High-Risk Option Combinations with Only Documentation via Large Language Model"**
 
