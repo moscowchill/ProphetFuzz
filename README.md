@@ -125,13 +125,14 @@ Here's the English translation:
 
 ## CVEs Assigned ##
 
-We employ ProphetFuzz to perform persistent fuzzing on the latest versions of the programs in our dataset. To date, ProphetFuzz has uncovered 140 zero-day or half-day vulnerabilities, 93 of which have been confirmed by the developers, earning 21 CVE numbers.
+We employ ProphetFuzz to perform persistent fuzzing on the latest versions of the programs in our dataset. To date, ProphetFuzz has uncovered 140 zero-day or half-day vulnerabilities, 93 of which have been confirmed by the developers, earning 22 CVE numbers.
 
 | CVE            | Program   | Type                     |
 | -------------- | --------- | ------------------------ |
 | CVE-2024-3248  | xpdf      | stack-buffer-overflow    |
 | CVE-2024-4853  | editcap   | heap-buffer-overflow     |
 | CVE-2024-4855  | editcap   | bad free                 |
+| CVE-2024-31743 | ffmpeg    | segmentation violation   |
 | CVE-2024-31744 | jasper    | assertion failure        |
 | CVE-2024-31745 | dwarfdump | use-after-free           |
 | CVE-2024-31746 | objdump   | heap-buffer-overflow     |
