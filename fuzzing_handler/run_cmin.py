@@ -11,7 +11,7 @@ fuzzing_dir = os.path.abspath(os.path.dirname(__file__))
 project_dir = os.path.abspath(os.path.join(fuzzing_dir, ".."))
 seed_dir = os.path.join(fuzzing_dir, "input")
 output_dir = os.path.join(fuzzing_dir, "seed_tmp")
-fuzzer_dir = "/root/fuzzer"
+fuzzer_dir = os.path.join(os.environ['HOME'], "fuzzer")
 
 def runCMinCommands(program, config_data):
 
@@ -24,21 +24,21 @@ def runCMinCommands(program, config_data):
     for i, argv in enumerate(argvs):
         my_env = {'HOME': os.environ['HOME']}
         if dataset == "carpetfuzz":
-            exec_path=f"/root/programs/{package}/build_afl++/bin"
-            if os.path.exists(f"/root/programs/{package}/build_afl++/lib"):
-                my_env["LD_LIBRARY_PATH"] = f"/root/programs/{package}/build_afl++/lib"
+            exec_path=f"{os.environ['HOME']}/programs/{package}/build_afl++/bin"
+            if os.path.exists(f"{os.environ['HOME']}/programs/{package}/build_afl++/lib"):
+                my_env["LD_LIBRARY_PATH"] = f"{os.environ['HOME']}/programs/{package}/build_afl++/lib"
             stub = argv
             if program == "editcap":
                 my_env["AFL_IGNORE_PROBLEMS"] = 1
         else:
             if dataset == "power":
-                exec_path=f"/root/programs_rq5/{package}/build_orig/target_afl++_{program}"
-                if os.path.exists(f"/root/programs_rq5/{package}/build_orig/lib"):
-                    my_env["LD_LIBRARY_PATH"] = f"/root/programs_rq5/{package}/build_orig/lib"
+                exec_path=f"{os.environ['HOME']}/programs_rq5/{package}/build_orig/target_afl++_{program}"
+                if os.path.exists(f"{os.environ['HOME']}/programs_rq5/{package}/build_orig/lib"):
+                    my_env["LD_LIBRARY_PATH"] = f"{os.environ['HOME']}/programs_rq5/{package}/build_orig/lib"
             elif dataset == "configfuzz":
-                exec_path=f"/root/programs_configfuzz/{package}/build_orig/target_afl++_{program}"
-                if os.path.exists(f"/root/programs_configfuzz/{package}/build_orig/lib"):
-                    my_env["LD_LIBRARY_PATH"] = f"/root/programs_configfuzz/{package}/build_orig/lib"
+                exec_path=f"{os.environ['HOME']}/programs_configfuzz/{package}/build_orig/target_afl++_{program}"
+                if os.path.exists(f"{os.environ['HOME']}/programs_configfuzz/{package}/build_orig/lib"):
+                    my_env["LD_LIBRARY_PATH"] = f"{os.environ['HOME']}/programs_configfuzz/{package}/build_orig/lib"
             else:
                 print(f"[x] Invalid dataset: {dataset}")
                 exit(1)

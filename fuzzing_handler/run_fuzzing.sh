@@ -79,18 +79,18 @@ prepareFuzzingCommands() {
             output_path="${output_dir}/${task}"
 
             if [[ "$dataset" == "carpetfuzz" ]]; then
-                exec_path="/root/programs/${package}/build_${fuzzer}/bin"
-                cmd="AFL_IGNORE_SEED_PROBLEMS=1 LD_LIBRARY_PATH=/root/programs/${package}/build_${fuzzer}/lib"
+                exec_path="$HOME/programs/${package}/build_${fuzzer}/bin"
+                cmd="AFL_IGNORE_SEED_PROBLEMS=1 LD_LIBRARY_PATH=$HOME/programs/${package}/build_${fuzzer}/lib"
                 if [[ $program == "editcap" ]]; then
                     cmd="AFL_IGNORE_PROBLEMS=1 $cmd"
                 fi
             elif [[ "$dataset" == "power" ]];then
-                exec_path="/root/programs_rq5/${package}/build_orig/target_${fuzzer}_${program}"
-                cmd="AFL_IGNORE_SEED_PROBLEMS=1 LD_LIBRARY_PATH=/root/programs_rq5/${package}/build_orig/lib"
+                exec_path="$HOME/programs_rq5/${package}/build_orig/target_${fuzzer}_${program}"
+                cmd="AFL_IGNORE_SEED_PROBLEMS=1 LD_LIBRARY_PATH=$HOME/programs_rq5/${package}/build_orig/lib"
                 stub=$(echo "$stub" | awk '{print ($1 ~ /\.afl$/) ? $0 : $1 ".afl " substr($0, length($1) + 2)}')
             elif [[ "$dataset" == "configfuzz" ]];then
-                exec_path="/root/programs_configfuzz/${package}/build_orig/target_${fuzzer}_${program}"
-                cmd="AFL_IGNORE_SEED_PROBLEMS=1 LD_LIBRARY_PATH=/root/programs_configfuzz/${package}/build_orig/lib"
+                exec_path="$HOME/programs_configfuzz/${package}/build_orig/target_${fuzzer}_${program}"
+                cmd="AFL_IGNORE_SEED_PROBLEMS=1 LD_LIBRARY_PATH=$HOME/programs_configfuzz/${package}/build_orig/lib"
                 stub=$(echo "$stub" | awk '{print ($1 ~ /\.afl$/) ? $0 : $1 ".afl " substr($0, length($1) + 2)}')
             else
                 echo "Invalid dataset: $dataset"

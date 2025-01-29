@@ -264,5 +264,10 @@
         "dataset": "power",
         "package": "yara-4.1.1",
         "stub": "yara -p 1 @@ input_yara"
+    },
+    "curl": {
+        "dataset": "power",
+        "package": "curl-8.5.0",
+        "stub": "curl @@ -o /tmp/foo"
     }
 }
