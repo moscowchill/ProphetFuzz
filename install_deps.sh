@@ -115,7 +115,10 @@ pip install --no-cache-dir \
     wllvm \
     sysv_ipc \
     requests \
-    beautifulsoup4
+    beautifulsoup4 \
+    demjson3 \
+    tqdm \
+    isort
 
 echo "[*] Deactivating virtual environment..."
 deactivate
