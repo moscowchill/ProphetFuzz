@@ -123,8 +123,9 @@ WORKDIR /root/programs
 RUN git clone https://github.com/commonmark/cmark cmark-git-9c8e8; cd cmark-git-9c8e8; git reset --hard 9c8e8341361fddc94322f9e0d7e9439e50d16138; \
     mkdir build; cd build; all_cmake
 ## Libsixel
+RUN apt update && apt install -y libtool automake autoconf pkg-config
 RUN git clone https://github.com/saitoha/libsixel libsixel-git-6a5be; cd libsixel-git-6a5be; git reset --hard 6a5be8b72d84037b83a5ea838e17bcf372ab1d5f; \
-    all_configure
+    ./autogen.sh && all_configure
 ## Libtiff
 RUN git clone https://gitlab.com/libtiff/libtiff libtiff-git-b51bb; cd libtiff-git-b51bb; git reset --hard b51bb157123264e26d34c09cc673d213aea61fc7; \
     bash ./autogen.sh; all_configure
