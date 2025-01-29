@@ -106,12 +106,19 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
 ########################################
 # 2. Python Packages
 ########################################
+echo "[*] Setting up Python virtual environment..."
+python3 -m venv venv
+source venv/bin/activate
+
 echo "[*] Installing Python tools (wllvm, etc.)..."
-sudo pip3 install --no-cache-dir \
+pip install --no-cache-dir \
     wllvm \
     sysv_ipc \
     requests \
     beautifulsoup4
+
+echo "[*] Deactivating virtual environment..."
+deactivate
 
 ########################################
 # 3. Create Directories
