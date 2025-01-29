@@ -81,7 +81,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
 	zlib1g-dev \
     libx264-dev \
     xmlto
-RUN pip3 install wllvm sysv-ipc
+RUN pip3 install wllvm sysv-ipc \
+    requests \
+    beautifulsoup4
 RUN mkdir /root/dep
 WORKDIR /root/dep
 RUN git clone https://github.com/facebook/zstd; cd zstd; make -j install; ln -s /lib/x86_64-linux-gnu/libzstd.so.1 /lib/x86_64-linux-gnu/libzstd.so

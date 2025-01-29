@@ -64,7 +64,9 @@ RUN apt install -y \
     llvm-12-tools 
 RUN apt install -y \
     gcc-$(gcc --version|head -n1|sed 's/\..*//'|sed 's/.* //')-plugin-dev \
-    libstdc++-$(gcc --version|head -n1|sed 's/\..*//'|sed 's/.* //')-dev
+    libstdc++-$(gcc --version|head -n1|sed 's/\..*//'|sed 's/.* //')-dev \
+    libssl-dev \
+    libffi-dev
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-12 100 && \
     update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-12 100 && \
     update-alternatives --install /usr/bin/llvm-ar llvm-ar /usr/bin/llvm-ar-12 100 && \
