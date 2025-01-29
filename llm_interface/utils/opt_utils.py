@@ -5,14 +5,14 @@ class OptionUtils:
         pass
 
     def findAllOptions(self, string):
-        return re.findall("-{1,2}[a-z0-9A-Z-_*=?!]+", string)
+        return re.findall(r"-{1,2}[a-z0-9A-Z-_*=?!]+", string)
     
     def checkValuedField(self, opt):
-        return bool(re.match("-{1,2}[a-z0-9A-Z-_*?!]+[=\[<\t: ]", opt))
+        return bool(re.match(r"-{1,2}[a-z0-9A-Z-_*?!]+[=\[<\t: ]", opt))
 
     def removeValueField(self, opt):
         # -a=xxx, -a[xxxx], -a<xxxx>, -a xxx, -a:xxx
-        return re.split("=|\[|<| |\t|:", opt.strip())[0]
+        return re.split(r"=|\[|<| |\t|:", opt.strip())[0]
 
     def splitJointOption(self, opt):
         splitted_opt_set = set()
@@ -20,10 +20,10 @@ class OptionUtils:
         # "or" and "and" works like ", "
         opt = opt.replace(" or ", ", ").replace(" and ", ", ")
         # replace pattern like "-w --warning" and "-w (--warning)", ensure each option splitted by colon
-        opt = re.sub("(-{1,2}[a-z0-9A-Z-*=?!]+) +(?=-{1,2}[a-z0-9A-Z-*=?!]+)", r"\1, ", opt).strip()
-        opt = re.sub("\s*\((-{1,2}[a-z0-9A-Z-*=?!]+)\)", r", \1", opt).strip()
+        opt = re.sub(r"(-{1,2}[a-z0-9A-Z-*=?!]+) +(?=-{1,2}[a-z0-9A-Z-*=?!]+)", r"\1, ", opt).strip()
+        opt = re.sub(r"\s*\((-{1,2}[a-z0-9A-Z-*=?!]+)\)", r", \1", opt).strip()
         # Several options are put together (, / |)
-        for splitted_opt in re.split('\s*(?:\||,|/)\s*(?=-{1,2}[a-z0-9A-Z-*=?!]+)', opt):
+        for splitted_opt in re.split(r'\s*(?:\||,|/)\s*(?=-{1,2}[a-z0-9A-Z-*=?!]+)', opt):
             splitted_opt_set.add(splitted_opt.strip())
         
         return list(splitted_opt_set)
@@ -42,7 +42,7 @@ class OptionUtils:
                 return []
             # --replace-*
             if new_key[-1] == "*":
-                pattern = r'^' + re.escape(new_key[:-1]) + '.*$'
+                pattern = r'^' + re.escape(new_key[:-1]) + r'.*$'
             else:
                 pattern = r'^' + re.escape(new_key) + r'(?![A-Za-z0-9_])'
             for key in key_mapping_dict.keys():
@@ -61,3 +61,19 @@ class OptionUtils:
             for opt in self.splitJointOption(key):
                 key_mapping_dict[opt] = key
         return key_mapping_dict
+
+    def isOption(self, opt):
+        return bool(re.match(r"-{1,2}[a-z0-9A-Z-_*?!]+[=\[<\t: ]", opt))
+
+    def getOptionName(self, opt):
+        return re.split(r"=|\[|<| |\t|:", opt.strip())[0]
+
+    def processOptions(self, opt):
+        splitted_opt_set = set()  # Initialize the set
+        # Remove the description
+        opt = re.sub(r"\s*\((-{1,2}[a-z0-9A-Z-*=?!]+)\)", r", \1", opt).strip()
+        # Split by |, /, and ,
+        for splitted_opt in re.split(r'\s*(?:\||,|/)\s*(?=-{1,2}[a-z0-9A-Z-*=?!]+)', opt):
+            splitted_opt_set.add(splitted_opt.strip())
+        
+        return list(splitted_opt_set)

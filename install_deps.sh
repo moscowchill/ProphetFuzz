@@ -101,7 +101,14 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
     make \
     gcc \
     g++ \
-    python3-pip
+    python3-pip \
+    gcc-plugin-dev \
+    clang \
+    llvm \
+    llvm-dev \
+    libclang-dev \
+    gcc-multilib \
+    g++-multilib
 
 ########################################
 # 2. Python Packages
@@ -118,7 +125,10 @@ pip install --no-cache-dir \
     beautifulsoup4 \
     demjson3 \
     tqdm \
-    isort
+    isort \
+    python-dotenv \
+    networkx \
+    autoimport
 
 echo "[*] Deactivating virtual environment..."
 deactivate
@@ -126,12 +136,11 @@ deactivate
 ########################################
 # 3. Create Directories
 ########################################
-# Dockerfile uses /root/dep and /root/programs, but you can change to $HOME
-echo "[*] Creating /root/dep and /root/programs (adjust if needed)..."
-sudo mkdir -p /root/dep
-sudo mkdir -p /root/programs
-sudo mkdir -p /root/ProphetFuzz  # For storing ProphetFuzz code if needed
-sudo chown -R $(id -u):$(id -g) /root
+# Create directories in user's home instead of /root
+echo "[*] Creating directories in $HOME..."
+mkdir -p $HOME/dep
+mkdir -p $HOME/programs
+mkdir -p $HOME/ProphetFuzz  # For storing ProphetFuzz code if needed
 
 ########################################
 # 4. Install Go
@@ -165,17 +174,29 @@ go get github.com/SRI-CSL/gllvm/cmd/...
 ########################################
 # 6. Build Dependencies (Optional)
 ########################################
-# The Dockerfile builds many libs from source in /root/dep. For example:
 echo "[*] Cloning and building zstd..."
-cd /root/dep
+cd $HOME/dep
 [ ! -d zstd ] && git clone https://github.com/facebook/zstd
 cd zstd
 sudo make -j install
 sudo ln -sf /lib/x86_64-linux-gnu/libzstd.so.1 /lib/x86_64-linux-gnu/libzstd.so
 cd ..
 
+########################################
+# 7. Install AFL++
+########################################
+echo "[*] Installing AFL++..."
+cd $HOME
+mkdir -p fuzzer
+cd fuzzer
+[ ! -d afl++ ] && git clone https://github.com/AFLplusplus/AFLplusplus afl++
+cd afl++
+make
+sudo make install
+cd ..
+
 echo "[*] Done installing main dependencies!"
 echo "-----------------------------------------------------"
-echo "You can now clone ProphetFuzz and run its scripts."
+echo "You can now run for example bash runallinone.sh bison"
 echo "If you open a new shell, remember to source ~/.bashrc"
 echo "-----------------------------------------------------"
