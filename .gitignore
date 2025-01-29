@@ -1,3 +1,4 @@
 llm_interface/config/.env
 .DS_Store
 */output/*
+.aider*
